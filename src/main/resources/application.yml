@@ -1,0 +1,7 @@
+server:
+  port: 8081
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/graduate_membership
+    username: graduate_membership
+    password: 909012
