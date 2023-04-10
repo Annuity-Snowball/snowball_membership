@@ -5,3 +5,7 @@ spring:
     url: r2dbc:postgresql://localhost:5432/graduate_membership
     username: graduate_membership
     password: 909012
+  redis:
+    host: localhost
+    port: 6379
+    password: 909012
