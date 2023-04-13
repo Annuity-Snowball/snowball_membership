@@ -1,5 +1,12 @@
 server:
   port: 8081
+
+jwt:
+  issuer: snowball
+  subject: auth
+  expires-time: 3600
+  secret: secretInfo
+
 spring:
   r2dbc:
     url: r2dbc:postgresql://localhost:5432/graduate_membership
