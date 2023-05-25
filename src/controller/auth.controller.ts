@@ -1,10 +1,10 @@
 import express, { Request, Response, NextFunction } from 'express'
 
-export class UserController {
+export class AuthController {
 
 }
 
-const userController = new UserController()
+const authController = new AuthController()
 const router = express.Router()
 
 
