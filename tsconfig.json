@@ -1,0 +1,48 @@
+// {
+//     "compilerOptions": {
+//         "target": "es2017",
+//         "module": "commonjs",
+//         "outDir": "dist",
+//         "strict": true,
+//         "esModuleInterop": true,
+//         "forceConsistentCasingInFileNames": true,
+//         "moduleResolution": "node",
+//         "experimentalDecorators": true,
+//         "resolveJsonModule": true,
+//         "skipLibCheck": true,
+//         "strictPropertyInitialization": false,
+//         "baseUrl": ".",
+//         "paths": {
+//         "*": ["node_modules/*"]
+//         },
+//         "lib": ["es7"]
+//     },
+//     "include": ["src/**/*.ts"],
+//     "exclude": ["node_modules"]
+// } 
+
+{
+    "ts-node": {
+        "esm": true
+    },
+    "compilerOptions": {
+        "lib": ["es5", "es6", "dom"],
+        "target": "es2017",
+        "preserveValueImports": false,
+        "module": "ESNext",
+        "moduleResolution": "node",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "allowImportingTsExtensions": true,
+        "noEmit": true,
+        "outDir": "dist"
+    },
+    "include": [
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
