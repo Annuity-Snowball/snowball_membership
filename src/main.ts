@@ -3,9 +3,12 @@ import cors from 'cors'
 import routerConfig from './config/router.config.ts'
 import { databaseInitialize } from './config/db.config.ts'
 import { errorHandler } from './exception/errorResponse.ts'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const app = express()
-const PORT = 10000
+const PORT = process.env.PORT
 
 databaseInitialize()
 
