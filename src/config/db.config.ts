@@ -23,7 +23,10 @@ export const mySqlClient = new DataSource({
     ]
 })
 
+const url = process.env.REDIS_URL
+const connection = createClient({url})
 
+export const redisClient = new Client()
 
 export const databaseInitialize = async () => {
     await mySqlClient.initialize()
@@ -33,6 +36,13 @@ export const databaseInitialize = async () => {
         .catch((err) => {
             console.error("Error during Mysql Data Source initialization", err)
         })
-    
+    await connection.connect()
+    await redisClient.use(connection)
+        .then(() => {
+            console.log("Redis Data Source has been initialized!")
+        })
+        .catch((err) => {
+            console.error("Redis during Mysql Data Source initialization", err)
+        })
     
 }
