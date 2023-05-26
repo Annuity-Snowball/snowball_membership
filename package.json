@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "snowball membership server",
   "main": "main.ts",
+  "type": "module",
   "scripts": {
     "start": "ts-node src/main.ts",
     "build": "tsc",
