@@ -25,6 +25,8 @@
     "redis": "^4.6.6",
     "redis-om": "^0.3.6",
     "reflect-metadata": "^0.1.13",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^4.6.3",
     "tsc": "^2.0.4",
     "typeorm": "^0.3.15",
     "typescript": "^5.0.4",
