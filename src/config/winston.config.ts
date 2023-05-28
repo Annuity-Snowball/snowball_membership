@@ -33,6 +33,6 @@ export const logger = winston.createLogger({
     ],
     exitOnError: false,
     exceptionHandlers: [
-        new transports.File({filename: '../../log/exceptions.log'})
+        new transports.File({filename: './log/exceptions.log'})
     ]
 })

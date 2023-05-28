@@ -37,3 +37,31 @@ export class PasswordNotMatchError extends ServerError {
         this.name = 'PasswordNotMatchError';
     }
 }
+
+export class NoTokenError extends ServerError {
+    constructor(message: string, status: number = 400) {
+        super(status, message);
+        this.name = 'NoTokenError';
+    }
+}
+
+export class AccessTokenExpiredError extends ServerError {
+    constructor(message: string, status: number = 400) {
+        super(status, message);
+        this.name = 'AccessTokenExpiredError';
+    }
+}
+
+export class RefreshTokenExpiredError extends ServerError {
+    constructor(message: string, status: number = 400) {
+        super(status, message);
+        this.name = 'RefreshTokenExpiredError';
+    }
+}
+
+export class TokenNotValidateError extends ServerError {
+    constructor(message: string, status: number = 400) {
+        super(status, message);
+        this.name = 'TokenNotValidateError';
+    }
+}

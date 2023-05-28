@@ -33,11 +33,8 @@ class UserController {
 
     // TODO: email 형식 검증, 비밀번호 규칙 검증 있어야함.
     public async signUp(req: Request, res: Response, next: NextFunction) {
-        const signUpRequest: SignUpRequest = {
-            email: req.body.email,
-            username: req.body.username,
-            password: req.body.password
-        }
+        const signUpRequest = new SignUpRequest(req)
+        
         const result = await this.userService.createUser(signUpRequest)
 
         if(result instanceof ServerError){
@@ -138,14 +135,17 @@ router.get('/checkDuplicate/username/:username', (req: Request, res: Response, n
 router.post('/signUp', (req: Request, res: Response, next: NextFunction) => {
     userController.signUp(req, res, next)
 })
+
 // TODO: check auth
 router.put('/password', (req: Request, res: Response, next: NextFunction) => {
     userController.updatePassword(req, res, next)
 })
+
 // TODO: check auth
 router.put('/username', (req: Request, res: Response, next: NextFunction) => {
     userController.updateUsername(req, res, next)
 })
+
 // TODO: check auth
 router.delete('/signDrop', (req: Request, res: Response, next: NextFunction) => {
     userController.signDrop(req, res, next)
