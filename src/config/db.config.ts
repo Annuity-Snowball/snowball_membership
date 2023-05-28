@@ -36,6 +36,7 @@ export const databaseInitialize = async () => {
         .catch((err) => {
             console.error("Error during Mysql Data Source initialization", err)
         })
+        
     await connection.connect()
     await redisClient.use(connection)
         .then(() => {

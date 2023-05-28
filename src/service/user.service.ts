@@ -4,6 +4,7 @@ import { EmailDuplicateError, UsernameDuplicateError, PasswordNotMatchError, Ser
 import { SignUpRequest } from '../model/user.model.ts'
 import { generateSalt, hashPassword } from '../utils/crypto.utils.ts'
 import { mySqlClient } from './../config/db.config.ts'
+import { logger } from '../config/winston.config.ts';
 export class UserService {
     private userRepository: Repository<User>
     constructor() {
@@ -18,7 +19,6 @@ export class UserService {
         })
 
         if(user){
-            console.log(user)
             return new EmailDuplicateError(`email: ${email} already exists`)
         } else {
             return 1
@@ -56,6 +56,7 @@ export class UserService {
         user.salt = await generateSalt()
         user.password = await hashPassword(signUpRequest.password, user.salt)
 
+        logger.info(`${user.email} have signUp`)
         this.userRepository.save(user)
     }
 
