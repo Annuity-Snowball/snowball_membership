@@ -26,7 +26,7 @@ export const vertifyToken = async (req: Request, res: Response, next: NextFuncti
     }
 }
 
-const handleErrorInAccessToken = async (
+export const handleErrorInAccessToken = async (
         res: Response,
         next: NextFunction,
         error: ServerError,
@@ -54,7 +54,7 @@ const handleExpiredAccessToken = async (res: Response, next: NextFunction, refre
     }
 }
 
-const generateNewAccessToken = async (res: Response, accessVerifyResult: object) => {
+export const generateNewAccessToken = async (res: Response, accessVerifyResult: object) => {
     // @ts-ignore
     const accessPayload = new AccessTokenModel(accessVerifyResult.email, accessVerifyResult.username)
     const newAccessToken = createAccessToken(accessPayload)
