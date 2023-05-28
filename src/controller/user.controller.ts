@@ -2,6 +2,7 @@ import express, { Request, Response, NextFunction } from 'express'
 import { UserService } from '../service/user.service.ts'
 import { ServerError } from '../exception/serverError.ts'
 import { SignUpRequest } from '../model/user.model.ts'
+import { vertifyToken } from '../utils/authenticate.util.ts'
 
 class UserController {
     private userService: UserService
@@ -34,7 +35,7 @@ class UserController {
     // TODO: email 형식 검증, 비밀번호 규칙 검증 있어야함.
     public async signUp(req: Request, res: Response, next: NextFunction) {
         const signUpRequest = new SignUpRequest(req)
-        
+
         const result = await this.userService.createUser(signUpRequest)
 
         if(result instanceof ServerError){
@@ -137,7 +138,7 @@ router.post('/signUp', (req: Request, res: Response, next: NextFunction) => {
 })
 
 // TODO: check auth
-router.put('/password', (req: Request, res: Response, next: NextFunction) => {
+router.put('/password', vertifyToken, (req: Request, res: Response, next: NextFunction) => {
     userController.updatePassword(req, res, next)
 })
 

@@ -1,7 +1,7 @@
 import dotenv from 'dotenv'
 import jwt from 'jsonwebtoken'
-import { AccessTokenExpiredError, RefreshTokenExpiredError, ServerError, TokenNotValidateError } from '../exception/serverError'
-import { AccessTokenModel, RefreshTokenModel } from '../model/auth.model'
+import { AccessTokenExpiredError, RefreshTokenExpiredError, ServerError, TokenNotValidateError } from '../exception/serverError.ts'
+import { AccessTokenModel, RefreshTokenModel } from '../model/auth.model.ts'
 
 dotenv.config()
 
