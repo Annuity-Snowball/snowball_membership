@@ -32,7 +32,7 @@ export const logger = winston.createLogger({
         new CustomRotateFile('info'),
     ],
     exitOnError: false,
-    exceptionHandlers: [
-        new transports.File({filename: './log/exceptions.log'})
-    ]
+    // exceptionHandlers: [
+    //     new transports.File({filename: './log/exceptions.log'})
+    // ]
 })

@@ -43,6 +43,7 @@ export class AuthController {
 
         if (accessVerifyResult instanceof ServerError) {
             await handleErrorInAccessToken(res, next, accessVerifyResult, refreshKey)
+            return
         } else {
             await generateNewAccessToken(res, accessVerifyResult)
         }

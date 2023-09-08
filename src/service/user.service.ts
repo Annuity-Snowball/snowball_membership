@@ -60,8 +60,19 @@ export class UserService {
         this.userRepository.save(user)
     }
 
-    async updatePassword(password: string) {
-        
+    async updatePassword(email: string, password: string): Promise<string|ServerError> {
+        const user = await this.userRepository.findOne({
+            where: {
+                email
+            }
+        })
+
+        if(!user) {
+            return new UserNotExistError(`${email} not exists`)
+        } else {
+            user.password = password
+            return "password has changed successfully"
+        }
     }
 
     async updateUsername(username: string) {

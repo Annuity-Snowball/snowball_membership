@@ -1,26 +1,3 @@
-// {
-//     "compilerOptions": {
-//         "target": "es2017",
-//         "module": "commonjs",
-//         "outDir": "dist",
-//         "strict": true,
-//         "esModuleInterop": true,
-//         "forceConsistentCasingInFileNames": true,
-//         "moduleResolution": "node",
-//         "experimentalDecorators": true,
-//         "resolveJsonModule": true,
-//         "skipLibCheck": true,
-//         "strictPropertyInitialization": false,
-//         "baseUrl": ".",
-//         "paths": {
-//         "*": ["node_modules/*"]
-//         },
-//         "lib": ["es7"]
-//     },
-//     "include": ["src/**/*.ts"],
-//     "exclude": ["node_modules"]
-// } 
-
 {
     "ts-node": {
         "esm": true
@@ -40,9 +17,12 @@
         "outDir": "dist"
     },
     "include": [
-        "src/**/*.ts"
+        "src/**/*"
     ],
     "exclude": [
         "node_modules"
+    ],
+    "files": [
+        "src/types/express.d.ts"
     ]
 }

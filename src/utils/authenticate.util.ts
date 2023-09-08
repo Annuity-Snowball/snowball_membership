@@ -6,10 +6,10 @@ import { RefreshToken, refreshTokenSchema } from "../entity/token.entity.ts"
 import { AccessTokenModel, RefreshTokenModel } from "../model/auth.model.ts"
 import { Repository } from 'redis-om';
 
-export const vertifyToken = async (req: Request, res: Response, next: NextFunction) => {
+export const verifyToken = async (req: Request, res: Response, next: NextFunction) => {
     const authHeader = req.headers.authorization
     const refreshKey = req.headers['x-refresh-token']
-
+    
     if (!authHeader || !refreshKey) {
         next(new NoTokenError("there is no token in header"))
         return
@@ -17,7 +17,10 @@ export const vertifyToken = async (req: Request, res: Response, next: NextFuncti
 
     const accessToken = authHeader.split(" ")[1]
     const accessVerifyResult = await verifyAccessToken(accessToken)
-
+    if("email" in accessVerifyResult) {
+        req.email = accessVerifyResult.email
+    }
+    
     if (accessVerifyResult instanceof ServerError) {
         await handleErrorInAccessToken(res, next, accessVerifyResult, refreshKey)
     } else {
@@ -51,6 +54,7 @@ const handleExpiredAccessToken = async (res: Response, next: NextFunction, refre
         res.setHeader('x-new-refresh-token', newRefreshKey)
 
         await generateNewAccessToken(res, refreshVerifyResult)
+        res.send()
     }
 }
 

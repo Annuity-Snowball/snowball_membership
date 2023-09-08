@@ -23,9 +23,9 @@ export const createRefreshToken = (payloadInfo: RefreshTokenModel): string => {
     return jwt.sign(payload, SECRET_KEY, { expiresIn: '7d' });
 }
 
-export const verifyAccessToken = async (token: string): Promise<object|ServerError> => {
+export const verifyAccessToken = async (token: string): Promise<AccessTokenModel|ServerError> => {
     try {
-        return jwt.verify(token, SECRET_KEY)
+        return await jwt.verify(token, SECRET_KEY)
     } catch (error) {
         if(error instanceof jwt.TokenExpiredError) {
             return new AccessTokenExpiredError("access token expired")

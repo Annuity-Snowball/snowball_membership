@@ -2,7 +2,7 @@ import express, { Request, Response, NextFunction } from 'express'
 import { UserService } from '../service/user.service.ts'
 import { ServerError } from '../exception/serverError.ts'
 import { SignUpRequest } from '../model/user.model.ts'
-import { vertifyToken } from '../utils/authenticate.util.ts'
+import { verifyToken } from '../utils/authenticate.util.ts'
 
 class UserController {
     private userService: UserService
@@ -46,7 +46,13 @@ class UserController {
     }
 
     public async updatePassword(req: Request, res: Response, next: NextFunction) {
-
+        const result = await this.userService.updatePassword(req.email, req.body.password)
+        
+        if(result instanceof ServerError){
+            next(result)
+        }else {
+            res.send(result)
+        }
     }
 
     public async updateUsername(req: Request, res: Response, next: NextFunction) {
@@ -138,7 +144,7 @@ router.post('/signUp', (req: Request, res: Response, next: NextFunction) => {
 })
 
 // TODO: check auth
-router.put('/password', vertifyToken, (req: Request, res: Response, next: NextFunction) => {
+router.put('/password', verifyToken, (req: Request, res: Response, next: NextFunction) => {
     userController.updatePassword(req, res, next)
 })
 
