@@ -56,7 +56,13 @@ class UserController {
     }
 
     public async updateUsername(req: Request, res: Response, next: NextFunction) {
-
+        const result = await this.userService.updateUsername(req.email, req.body.username)
+        
+        if(result instanceof ServerError){
+            next(result)
+        }else {
+            res.send(result)
+        }
     }
 
     public async signDrop(req: Request, res: Response, next: NextFunction) {
@@ -143,18 +149,15 @@ router.post('/signUp', (req: Request, res: Response, next: NextFunction) => {
     userController.signUp(req, res, next)
 })
 
-// TODO: check auth
 router.put('/password', verifyToken, (req: Request, res: Response, next: NextFunction) => {
     userController.updatePassword(req, res, next)
 })
 
-// TODO: check auth
-router.put('/username', (req: Request, res: Response, next: NextFunction) => {
+router.put('/username', verifyToken, (req: Request, res: Response, next: NextFunction) => {
     userController.updateUsername(req, res, next)
 })
 
-// TODO: check auth
-router.delete('/signDrop', (req: Request, res: Response, next: NextFunction) => {
+router.delete('/signDrop', verifyToken, (req: Request, res: Response, next: NextFunction) => {
     userController.signDrop(req, res, next)
 })
 

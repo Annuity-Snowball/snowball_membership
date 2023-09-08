@@ -71,15 +71,33 @@ export class UserService {
             return new UserNotExistError(`${email} not exists`)
         } else {
             user.password = password
+            await this.userRepository.save(user)
             return "password has changed successfully"
         }
     }
 
-    async updateUsername(username: string) {
+    async updateUsername(email: string, username: string): Promise<string|ServerError> {
+        const duplicateCheck = await this.checkUsernameDuplication(username)
+        if(duplicateCheck instanceof ServerError) {
+            return duplicateCheck
+        }
 
+        const user = await this.userRepository.findOne({
+            where: {
+                email
+            }
+        })
+
+        if(!user) {
+            return new UserNotExistError(`${email} not exists`)
+        } else {
+            user.username = username
+            await this.userRepository.save(user)
+            return "username has changed successfully"
+        }
     }
 
-    async deleteUser(password: string) {
+    async deleteUser(email: string) {
 
     }
 
