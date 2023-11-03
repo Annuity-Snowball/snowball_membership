@@ -61,7 +61,7 @@ class UserController {
         if(result instanceof ServerError){
             next(result)
         }else {
-            res.send(result)
+            res.send(result)   
         }
     }
 

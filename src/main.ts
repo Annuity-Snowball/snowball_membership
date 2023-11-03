@@ -22,5 +22,5 @@ app.use('/', routerConfig)
 app.use(errorHandler)
 
 app.listen(PORT, () => {
-    console.log(`The Express server is listening at port: ${PORT}`)
+    console.log(`The Membership server is listening at port: ${PORT}`)
 })
